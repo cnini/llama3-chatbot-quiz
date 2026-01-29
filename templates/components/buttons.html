@@ -1,7 +1,5 @@
-
-
-{% macro button(label, id, icon_name="", color="primary", margins="") %}
-    <button id="subject-{{ id }}" class="btn btn-sm btn-outline-{{ color }} {{ margins }} rounded-pill">
+{% macro button(label, id, icon_name="", btn_color="primary", margins="") %}
+    <button id="subject-{{ id }}" class="btn btn-sm btn-outline-{{ btn_color }} {{ margins }} rounded-pill">
         <span class="{% if icon_name %}me-2{% endif %}">{{ label }}</span>
 
         {% if icon_name %}

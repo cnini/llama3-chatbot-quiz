@@ -5,3 +5,7 @@ body {
 #quiz-subject {
     width: 25%;
 }
+
+[id^="subject-"]:hover span {
+    color: #212529;
+}
