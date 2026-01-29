@@ -6,7 +6,7 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
 
-@router.get("/", response_class=HTMLResponse)
+@router.get("/", include_in_schema=False, response_class=HTMLResponse)
 def home(request: Request) :
     subjects = [
         {"id": "html", "name": "HTML"}, 

@@ -1,16 +1,20 @@
 {% extends "layouts/base.html" %}
-{% from "components/buttons.html" import button %}
+{% from "components/buttons.html" import button, icon_only_button %}
 
 {% block title %}{{ title }}{% endblock title %}
 
 {% block header %}
 
     <h1 class="mb-3 text-light">Quiz</h1>
-    <span class="fs-5 mb-2 text-light">Choisissez le sujet pour commencer le quiz.</span>
+
+    <div id="quiz-description" class="d-flex">
+        <p class="fs-5 mb-3 text-light">Choisissez le sujet pour commencer le quiz.</p>
+        {{ icon_only_button("quiz-start-button", "play_arrow", icon_size="fs-5", btn_color="success", margins="ms-2", display="d-none") }}
+    </div>
 
     <div id="quiz-subject" class="d-flex flex-wrap justify-content-center">
         {% for subject in subjects %}
-            {{ button(subject.name, subject.id, btn_color="light", margins="mx-1 mb-2") }}
+            {{ button(subject.name, "subject-"~subject.id, btn_color="light", margins="mx-1 mb-2") }}
         {% endfor %}
     </div>
 

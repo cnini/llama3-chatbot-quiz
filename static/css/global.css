@@ -2,8 +2,9 @@ body {
     font-size: 12px;
 }
 
-#quiz-subject {
-    width: 25%;
+#quiz-start-button {
+    width: fit-content;
+    height: 30px;
 }
 
 [id^="subject-"]:hover span {
