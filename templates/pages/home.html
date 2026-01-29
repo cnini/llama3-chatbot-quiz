@@ -14,7 +14,7 @@
 
     <div id="quiz-subject" class="d-flex flex-wrap justify-content-center">
         {% for subject in subjects %}
-            {{ button(subject.name, "subject-"~subject.id, btn_color="light", margins="mx-1 mb-2") }}
+            {{ button(subject.name, "subject-"~subject.id, btn_color="outline-light", margins="mx-1 mb-2") }}
         {% endfor %}
     </div>
 
@@ -22,6 +22,14 @@
 
 {% block content %}
 
-    
+    <div id="quiz-conversation-area" class="border rounded"></div>
+    <form id="quiz-form" class="d-flex align-items-center justify-content-center mt-2">
+        {# <textarea name="message" id="quiz-textarea" class="w-75 me-2"></textarea> #}
+        <div class="form-floating">
+            <textarea class="form-control" id="quiz-textarea" disabled></textarea>
+            <label for="floatingTextarea2">Votre réponse</label>
+        </div>
+        {{ button("Envoyer", "quiz-send-button", btn_color="dark", disabled=true) }}
+    </form>
 
 {% endblock content %}

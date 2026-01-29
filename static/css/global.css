@@ -10,3 +10,27 @@ body {
 [id^="subject-"]:hover span {
     color: #212529;
 }
+
+#quiz-conversation-area {
+    width: 70vw;
+    height: 50vh;
+}
+
+#quiz-form {
+    width: 70vw;
+}
+
+#quiz-textarea {
+    width: 50vw;
+    margin-right: 20px;
+}
+
+#quiz-textarea.form-control:focus {
+    border-color: #dee2e6 !important;
+    box-shadow: none !important;
+}
+
+#quiz-send-button[disabled] {
+    pointer-events: all;
+    cursor: not-allowed;
+}
