@@ -1,0 +1,23 @@
+{% extends "layouts/base.html" %}
+{% from "components/buttons.html" import button %}
+
+{% block title %}{{ title }}{% endblock title %}
+
+{% block header %}
+
+    <h1 class="mb-3 text-light">Quiz</h1>
+    <span class="fs-5 mb-2 text-light">Choisissez le sujet pour commencer le quiz.</span>
+
+    <div id="quiz-subject" class="d-flex flex-wrap justify-content-center">
+        {% for subject in subjects %}
+            {{ button(subject.name, subject.id, color="light", margins="mx-1 mb-2") }}
+        {% endfor %}
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+
+    
+
+{% endblock content %}
