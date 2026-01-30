@@ -1,0 +1,26 @@
+{% macro button(label, id, icon_name="", btn_color="primary", margins="", disabled=false, type="button") %}
+    <button 
+        type="{{ type }}"
+        id="{{ id }}" 
+        class="btn btn-sm btn-{{ btn_color }} {{ margins }} rounded-pill"
+        {% if disabled %}disabled{% endif %}
+    >
+        <span class="{% if icon_name %}me-2{% endif %}">{{ label }}</span>
+
+        {% if icon_name %}
+            <span class="material-symbols-outlined">{{ icon_name }}</span>
+        {% endif %}
+    </button>
+{% endmacro %}
+
+{% macro icon_only_button(id, icon_name, icon_size="", btn_color="primary", margins="", display="", disabled=false, toggle="", target="") %}
+    <button 
+        id="{{ id }}" 
+        class="btn btn-sm btn-{{ btn_color }} {{ margins }} rounded-pill {{ display }}"
+        {% if disabled %}disabled{% endif %}
+        {% if toggle %}data-bs-toggle={{ toggle }}{% endif %}
+        {% if target %}data-bs-target={{ target }}{% endif %}
+    >
+        <span class="material-symbols-outlined {{ icon_size }}">{{ icon_name }}</span>
+    </button>
+{% endmacro %}

@@ -1,0 +1,21 @@
+{% macro modal(id, title, content, fail_btn_text, success_btn_id, success_btn_color, success_btn_text) %}
+    
+    <div id={{ id }} class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ title }}</h5>
+                {# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> #}
+            </div>
+            <div class="modal-body">
+                <p class="fs-5">{{ content }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ fail_btn_text }}</button>
+                <button type="button" id ="{{ success_btn_id }}" class="btn btn-{{ success_btn_color }}">{{ success_btn_text }}</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}

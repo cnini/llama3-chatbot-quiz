@@ -1,0 +1,31 @@
+body {
+    font-size: 12px;
+}
+
+#quiz-start-button, #quiz-stop-button {
+    width: fit-content;
+    height: 30px;
+}
+
+[id^="subject-"]:hover span {
+    color: #212529;
+}
+
+#quiz-conversation-area {
+    width: 70vw;
+    height: 50vh;
+}
+
+#quiz-form {
+    width: 70vw;
+}
+
+#quiz-textarea {
+    width: 50vw;
+    margin-right: 20px;
+}
+
+#quiz-textarea.form-control:focus {
+    border-color: #dee2e6 !important;
+    box-shadow: none !important;
+}
