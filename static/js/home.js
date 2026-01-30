@@ -9,7 +9,11 @@ const quizWrongAnswers = document.querySelector("#quiz-wrong-answers")
 const quizTextarea = document.querySelector("#quiz-textarea")
 const quizSendButton = document.querySelector("#quiz-send-button")
 
-startButton.addEventListener("click", () => {
+const modalElement = document.querySelector("#modal-stop-quiz")
+const modal = new bootstrap.Modal(modalElement)
+const modalButtonStop = document.querySelector("#modal-btn-stop")
+
+const handleStartQuiz = () => {
     const activeButton = document.querySelector("[id^=subject-][class*=btn-light]")
     const selectedSubject = activeButton.querySelector("span").innerHTML
 
@@ -24,10 +28,16 @@ startButton.addEventListener("click", () => {
 
     quizTextarea.disabled = false
     quizSendButton.disabled = false
-})
+}
 
-stopButton.addEventListener("click", () => {
+const handleStopQuiz = () => {
+    modal.hide()
+
     const activeButton = document.querySelector("[id^=subject-][class*=btn-light]")
+    
+    if (activeButton) {
+        toggleClass(activeButton.classList, "btn-light", "btn-outline-light")
+    }
 
     // Update description
     description.innerHTML = "Choisissez le sujet pour commencer le quiz."
@@ -39,22 +49,12 @@ stopButton.addEventListener("click", () => {
         button.disabled = false
     })
 
-    toggleClass(activeButton.classList, "btn-light", "btn-outline-light")
-
-    console.log("stop the quiz")
-
     quizCountQuestions.innerHTML = "0"
     quizCorrectAnswers.innerHTML = "0"
     quizWrongAnswers.innerHTML = "0"
     quizTextarea.disabled = true
     quizSendButton.disabled = true
-})
-
-subjectsButton.forEach((button) => {
-    button.addEventListener("click", () => {
-        handleSubjectButtonState(button)
-    })
-})
+}
 
 const handleSubjectButtonState = (button) => {
     const btnClassList = button.classList
@@ -94,3 +94,15 @@ const handleSubjectButtonState = (button) => {
 const toggleClass = (classList, token, newToken) => {
     classList.replace(token, newToken)
 }
+
+startButton.addEventListener("click", handleStartQuiz)
+
+stopButton.addEventListener("click", () => { modal.show() })
+
+modalButtonStop.addEventListener("click", handleStopQuiz)
+
+subjectsButton.forEach((button) => {
+    button.addEventListener("click", () => {
+        handleSubjectButtonState(button)
+    })
+})

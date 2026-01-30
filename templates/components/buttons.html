@@ -12,11 +12,13 @@
     </button>
 {% endmacro %}
 
-{% macro icon_only_button(id, icon_name, icon_size="", btn_color="primary", margins="", display="", disabled=false) %}
+{% macro icon_only_button(id, icon_name, icon_size="", btn_color="primary", margins="", display="", disabled=false, toggle="", target="") %}
     <button 
         id="{{ id }}" 
         class="btn btn-sm btn-{{ btn_color }} {{ margins }} rounded-pill {{ display }}"
         {% if disabled %}disabled{% endif %}
+        {% if toggle %}data-bs-toggle={{ toggle }}{% endif %}
+        {% if target %}data-bs-target={{ target }}{% endif %}
     >
         <span class="material-symbols-outlined {{ icon_size }}">{{ icon_name }}</span>
     </button>
