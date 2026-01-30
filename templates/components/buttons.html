@@ -1,5 +1,6 @@
-{% macro button(label, id, icon_name="", btn_color="primary", margins="", disabled=false) %}
+{% macro button(label, id, icon_name="", btn_color="primary", margins="", disabled=false, type="button") %}
     <button 
+        type="{{ type }}"
         id="{{ id }}" 
         class="btn btn-sm btn-{{ btn_color }} {{ margins }} rounded-pill"
         {% if disabled %}disabled{% endif %}

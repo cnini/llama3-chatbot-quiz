@@ -48,26 +48,27 @@
 
     <div class="d-flex flex-column">
         <div class="d-flex justify-content-between">
-            <p class="mb-1 text-uppercase text-secondary">Difficulté : <span id="quiz-difficulty" class="fw-bold">Facile</span></p>
+            <p class="mb-1 text-uppercase text-secondary">Difficulté : <span id="quiz-difficulty-level" class="fw-bold">Facile</span></p>
             <p class="mb-1 text-uppercase text-secondary">
                 <span id="quiz-count-questions" class="fw-bold">0</span>/10 questions | 
                 Réponses : <span class="fw-bold text-success"><span id="quiz-correct-answers">0</span> correctes</span> / 
                 <span class="fw-bold text-danger"><span id="quiz-wrong-answers">0</span> fausses</span>
             </p>
         </div>
-        <div id="quiz-conversation-area" class="border rounded"></div>
+        <div id="quiz-conversation-area" class="border rounded px-3 py-3 overflow-auto"></div>
     </div>
 
     <form id="quiz-form" class="d-flex align-items-center justify-content-center mt-2">
         <div class="form-floating">
-            <textarea class="form-control" id="quiz-textarea" disabled></textarea>
+            <textarea class="form-control" name="textarea" id="quiz-textarea" required disabled></textarea>
             <label for="floatingTextarea2">Votre réponse</label>
         </div>
         {{ button(
             "Envoyer", 
             "quiz-send-button", 
             btn_color="dark", 
-            disabled=true
+            disabled=true,
+            type="submit"
         ) }}
     </form>
 
@@ -80,5 +81,23 @@
         "danger",
         "Quitter"
     ) }}
+
+    <div id="template-message-boxes" class="border rounded px-3 py-3 overflow-auto d-none">
+        <div class="ai-message-box w-75 float-start mb-3">
+            <div class="card">
+                <div class="card-body">
+                    Sa réponse
+                </div>
+            </div>
+        </div>
+        <div class="user-message-box w-75 float-end mb-3 text-end">
+            <span class="text-uppercase text-secondary">Vous</span>
+            <div class="card mt-1">
+                <div class="card-body text-start">
+                    Votre réponse
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}
