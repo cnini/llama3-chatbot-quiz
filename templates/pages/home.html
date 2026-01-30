@@ -10,6 +10,7 @@
     <div id="quiz-description" class="d-flex">
         <p class="fs-5 mb-3 text-light">Choisissez le sujet pour commencer le quiz.</p>
         {{ icon_only_button("quiz-start-button", "play_arrow", icon_size="fs-5", btn_color="success", margins="ms-2", display="d-none") }}
+        {{ icon_only_button("quiz-stop-button", "stop", icon_size="fs-5", btn_color="danger", margins="ms-2", display="d-none") }}
     </div>
 
     <div id="quiz-subject" class="d-flex flex-wrap justify-content-center">
@@ -22,9 +23,18 @@
 
 {% block content %}
 
-    <div id="quiz-conversation-area" class="border rounded"></div>
+    <div class="d-flex flex-column">
+        <div class="d-flex justify-content-between">
+            <p class="mb-1 text-uppercase text-secondary">Difficulté : <span id="quiz-difficulty" class="fw-bold">Facile</span></p>
+            <p class="mb-1 text-uppercase text-secondary">
+                <span id="quiz-count-questions" class="fw-bold">0</span>/10 questions | 
+                Réponses : <span class="fw-bold text-success"><span id="quiz-correct-answers">0</span> correctes</span> / 
+                <span class="fw-bold text-danger"><span id="quiz-wrong-answers">0</span> fausses</span>
+            </p>
+        </div>
+        <div id="quiz-conversation-area" class="border rounded"></div>
+    </div>
     <form id="quiz-form" class="d-flex align-items-center justify-content-center mt-2">
-        {# <textarea name="message" id="quiz-textarea" class="w-75 me-2"></textarea> #}
         <div class="form-floating">
             <textarea class="form-control" id="quiz-textarea" disabled></textarea>
             <label for="floatingTextarea2">Votre réponse</label>

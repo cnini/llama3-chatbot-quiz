@@ -2,7 +2,7 @@ body {
     font-size: 12px;
 }
 
-#quiz-start-button {
+#quiz-start-button, #quiz-stop-button {
     width: fit-content;
     height: 30px;
 }
@@ -28,9 +28,4 @@ body {
 #quiz-textarea.form-control:focus {
     border-color: #dee2e6 !important;
     box-shadow: none !important;
-}
-
-#quiz-send-button[disabled] {
-    pointer-events: all;
-    cursor: not-allowed;
 }

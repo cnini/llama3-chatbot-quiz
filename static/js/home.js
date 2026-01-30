@@ -1,11 +1,53 @@
-const subjectsButton = document.querySelectorAll("[id^=subject-]")
+const description = document.querySelector("#quiz-description p")
 const startButton = document.querySelector("#quiz-start-button")
+const stopButton = document.querySelector("#quiz-stop-button")
+const subjectsButton = document.querySelectorAll("[id^=subject-]")
+
+const quizCountQuestions = document.querySelector("#quiz-count-questions")
+const quizCorrectAnswers = document.querySelector("#quiz-correct-answers")
+const quizWrongAnswers = document.querySelector("#quiz-wrong-answers")
+const quizTextarea = document.querySelector("#quiz-textarea")
+const quizSendButton = document.querySelector("#quiz-send-button")
 
 startButton.addEventListener("click", () => {
     const activeButton = document.querySelector("[id^=subject-][class*=btn-light]")
     const selectedSubject = activeButton.querySelector("span").innerHTML
 
+    toggleClass(startButton.classList, "d-block", "d-none")
+    toggleClass(stopButton.classList, "d-none", "d-block")
+
+    subjectsButton.forEach((button) => {
+        button.disabled = true
+    })
+
     console.log("start the quiz")
+
+    quizTextarea.disabled = false
+    quizSendButton.disabled = false
+})
+
+stopButton.addEventListener("click", () => {
+    const activeButton = document.querySelector("[id^=subject-][class*=btn-light]")
+
+    // Update description
+    description.innerHTML = "Choisissez le sujet pour commencer le quiz."
+
+    toggleClass(startButton.classList, "d-block", "d-none")
+    toggleClass(stopButton.classList, "d-block", "d-none")
+
+    subjectsButton.forEach((button) => {
+        button.disabled = false
+    })
+
+    toggleClass(activeButton.classList, "btn-light", "btn-outline-light")
+
+    console.log("stop the quiz")
+
+    quizCountQuestions.innerHTML = "0"
+    quizCorrectAnswers.innerHTML = "0"
+    quizWrongAnswers.innerHTML = "0"
+    quizTextarea.disabled = true
+    quizSendButton.disabled = true
 })
 
 subjectsButton.forEach((button) => {
@@ -16,7 +58,6 @@ subjectsButton.forEach((button) => {
 
 const handleSubjectButtonState = (button) => {
     const btnClassList = button.classList
-    const description = document.querySelector("#quiz-description p")
 
     if (btnClassList.contains("btn-outline-light")) {
         // Check if there already is an active button.
@@ -32,9 +73,9 @@ const handleSubjectButtonState = (button) => {
 
         // Update description
         const selectedSubject = button.querySelector("span").innerHTML
-        description.innerHTML = `Vous avez choisi de vous entraîner sur <span class="fw-bold">${selectedSubject}</span>.`
+        description.innerHTML = `<span class="fw-bold">${selectedSubject}</span>`
 
-        // Show the start button if it's hidden
+        // Show the start and stop buttons if it's hidden
         if (startButton.classList.contains("d-none")) {
             toggleClass(startButton.classList, "d-none", "d-block")
         }
@@ -45,7 +86,7 @@ const handleSubjectButtonState = (button) => {
         // Update description
         description.innerHTML = "Choisissez le sujet pour commencer le quiz."
 
-        // Hide the start button
+        // Hide the start and stop buttons
         toggleClass(startButton.classList, "d-block", "d-none")
     }
 }
